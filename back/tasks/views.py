@@ -1,4 +1,5 @@
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -7,8 +8,13 @@ from .models import Task
 
 
 class TasksListView(generics.ListCreateAPIView):
-    queryset = Task.objects.all()
     serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        print(Task.objects.filter(user=user))
+        return Task.objects.filter(user=user)
 
 
 class TaskDetailView(APIView):
