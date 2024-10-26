@@ -7,10 +7,13 @@ import NotFound from "./components/notFound";
 import TaskDetails from "./components/taskDetails";
 
 import "./App.css";
+import Header from "./components/header";
+import Profile from "./components/profile";
 
 function App() {
     return (
         <Router>
+            <Header />
             <Routes>
                 <Route path="/login" element={<Login />} />
                 {/* Protected routes */}
@@ -27,6 +30,14 @@ function App() {
                     element={
                         <ProtectedRoute>
                             <TaskDetails />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/profile"
+                    element={
+                        <ProtectedRoute>
+                            <Profile />
                         </ProtectedRoute>
                     }
                 />

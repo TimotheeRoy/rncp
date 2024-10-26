@@ -23,6 +23,8 @@ function Login() {
             });
             const data = await response.json();
             localStorage.setItem("token", data.access);
+            localStorage.setItem("refresh", data.refresh);
+            localStorage.setItem("user_id", data.user_id);
             navigate("/tasks");
         } catch (error) {
             console.error("Error during login", error);

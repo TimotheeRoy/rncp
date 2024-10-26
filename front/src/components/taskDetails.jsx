@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 // [{ id: 1,
 // title: "Task 1",
@@ -11,9 +11,9 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function TaskDetails() {
     const url = "http://localhost:8000/api/";
+    const token = localStorage.getItem("token");
     const [taskDetails, setTaskDetails] = useState([]);
     const [loading, setLoading] = useState(true);
-    const token = localStorage.getItem("token");
     const { id } = useParams();
 
     useEffect(() => {
