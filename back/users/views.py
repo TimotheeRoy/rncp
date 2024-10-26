@@ -1,9 +1,10 @@
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 from users.models import User
-from users.serializers import UserSerializer
+from users.serializers import CustomTokenObtainPairSerializer, UserSerializer
 
 
 
@@ -46,3 +47,14 @@ class DeleteUserView(APIView):
         user = request.user
         user.delete()
         return Response(status=204)
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        token = serializer.validated_data['access']
+        user_id = serializer.validated_data['user_id']
+        return Response({'access': str(token), 'user_id': user_id})

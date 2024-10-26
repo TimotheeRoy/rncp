@@ -13,7 +13,6 @@ class TasksListView(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        print(Task.objects.filter(user=user))
         return Task.objects.filter(user=user)
 
 
