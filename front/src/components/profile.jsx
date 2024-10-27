@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // [{ id: 1,
 // email: "nLxqG@example.com",
@@ -14,6 +14,7 @@ function Profile() {
     const [profile, setProfile] = useState([]);
     const [loading, setLoading] = useState(true);
     const user_id = localStorage.getItem("user_id");
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchProfile();
@@ -40,6 +41,28 @@ function Profile() {
         }
     };
 
+    const deleteProfile = async () => {
+        try {
+            const response = await fetch(url + `users/${user_id}/delete/`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+            });
+            if (response.ok) {
+                localStorage.removeItem("token");
+                localStorage.removeItem("refresh");
+                localStorage.removeItem("user_id");
+                navigate("/login");
+            } else {
+                console.error("Error deleting profile:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Error deleting profile:", error);
+        }
+    };
+
     return (
         <div>
             {loading ? (
@@ -51,6 +74,7 @@ function Profile() {
                         Name: {profile.first_name} {profile.last_name}
                     </p>
                     <p>Email: {profile.email}</p>
+                    <button onClick={deleteProfile}>Delete Profile</button>
                 </div>
             )}
         </div>
