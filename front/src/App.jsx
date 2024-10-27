@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    useLocation,
+} from "react-router-dom";
 
 import Login from "./components/login";
 import TasksList from "./components/tasksList";
@@ -11,9 +16,12 @@ import Header from "./components/header";
 import Profile from "./components/profile";
 
 function App() {
+    const location = useLocation();
+    const showHeader = location.pathname !== "/login";
+
     return (
-        <Router>
-            <Header />
+        <div>
+            {showHeader && <Header />}
             <Routes>
                 <Route path="/login" element={<Login />} />
                 {/* Protected routes */}
@@ -50,7 +58,7 @@ function App() {
                     }
                 />
             </Routes>
-        </Router>
+        </div>
     );
 }
 
