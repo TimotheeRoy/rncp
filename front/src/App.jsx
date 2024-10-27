@@ -14,6 +14,7 @@ import TaskDetails from "./components/taskDetails";
 import "./App.css";
 import Header from "./components/header";
 import Profile from "./components/profile";
+import Signup from "./components/signUp";
 
 function App() {
     const location = useLocation();
@@ -49,6 +50,7 @@ function App() {
                         </ProtectedRoute>
                     }
                 />
+                <Route path="/signup" element={<Signup />} />
                 <Route
                     path="*"
                     element={

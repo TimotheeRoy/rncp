@@ -50,6 +50,10 @@ function Login() {
                 />
             </label>
             <button type="submit">Login</button>
+            <label>
+                Don't have an account ?
+                <button onClick={() => navigate("/signup")}>Sign Up</button>
+            </label>
         </form>
     );
 }
