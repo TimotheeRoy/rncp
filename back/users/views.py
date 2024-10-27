@@ -32,8 +32,8 @@ class RetrieveUserView(APIView):
 
 class UpdateUserView(APIView):
     permission_classes = [IsAuthenticated]
-    def put(self, request):
-        user = request.user
+    def put(self, request, pk):
+        user = User.objects.get(pk=pk)
         serializer = UserSerializer(user, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -43,8 +43,8 @@ class UpdateUserView(APIView):
 
 class DeleteUserView(APIView):
     permission_classes = [IsAuthenticated]
-    def delete(self, request):
-        user = request.user
+    def delete(self, request, pk):
+        user = User.objects.get(pk=pk)
         user.delete()
         return Response(status=204)
 
