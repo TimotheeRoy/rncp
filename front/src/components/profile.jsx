@@ -75,6 +75,9 @@ function Profile() {
                     </p>
                     <p>Email: {profile.email}</p>
                     <button onClick={deleteProfile}>Delete Profile</button>
+                    <button onClick={() => navigate("/profile/update")}>
+                        Update Profile
+                    </button>
                 </div>
             )}
         </div>

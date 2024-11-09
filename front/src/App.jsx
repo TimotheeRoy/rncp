@@ -9,6 +9,7 @@ import Login from "./components/login";
 import TasksList from "./components/tasksList";
 import ProtectedRoute from "./components/protectedRoute";
 import NotFound from "./components/notFound";
+import UpdateProfile from "./components/updateProfile";
 import TaskDetails from "./components/taskDetails";
 
 import "./App.css";
@@ -47,6 +48,14 @@ function App() {
                     element={
                         <ProtectedRoute>
                             <Profile />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/profile/update"
+                    element={
+                        <ProtectedRoute>
+                            <UpdateProfile />
                         </ProtectedRoute>
                     }
                 />
