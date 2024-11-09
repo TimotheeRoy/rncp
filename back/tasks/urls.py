@@ -14,19 +14,4 @@ urlpatterns = [
         TaskDetailView.as_view(),
         name="task-detail",
     ),
-    path(
-        "<int:pk>/delete/",
-        TaskDetailView.delete,
-        name="task-delete",
-    ),
-    path(
-        "<int:pk>/update/",
-        TaskDetailView.put,
-        name="task-update",
-    ),
-    path(
-        "create/",
-        TaskDetailView.post,
-        name="task-create",
-    ),
 ]

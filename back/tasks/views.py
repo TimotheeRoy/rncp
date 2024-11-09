@@ -8,13 +8,15 @@ from .models import Task
 
 
 class TasksListView(generics.ListAPIView):
-    serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
-        user = self.request.user
-        return Task.objects.filter(user=user)
-
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        completed_tasks = user.tasks.filter(completed=True)
+        not_completed_tasks = user.tasks.filter(completed=False)
+        completed_tasks_data = TaskSerializer(completed_tasks, many=True)
+        not_completed_tasks_data = TaskSerializer(not_completed_tasks, many=True)
+        return Response({"completed": completed_tasks_data.data, "not_completed": not_completed_tasks_data.data})
 
 class TaskDetailView(APIView):
     def get(self, request, pk):
@@ -31,7 +33,8 @@ class TaskDetailView(APIView):
 
     def put(self, request, pk):
         task = Task.objects.get(pk=pk)
-        serializer = TaskSerializer(task, data=request.data)
+        print(request.data)
+        serializer = TaskSerializer(task, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
