@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 function Profile() {
     const url = "http://localhost:8000/api/";
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("access_token");
     const [profile, setProfile] = useState([]);
     const [loading, setLoading] = useState(true);
     const user_id = localStorage.getItem("user_id");
@@ -51,7 +51,7 @@ function Profile() {
                 },
             });
             if (response.ok) {
-                localStorage.removeItem("token");
+                localStorage.removeItem("access_token");
                 localStorage.removeItem("refresh");
                 localStorage.removeItem("user_id");
                 navigate("/login");

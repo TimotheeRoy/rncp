@@ -5,13 +5,13 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const url = "http://localhost:8000/";
+    const url = "http://localhost:8000/api/";
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await fetch(url + "api/token/", {
+            const response = await fetch(url + "login/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -21,11 +21,17 @@ function Login() {
                     password,
                 }),
             });
-            const data = await response.json();
-            localStorage.setItem("token", data.access);
-            localStorage.setItem("refresh", data.refresh);
-            localStorage.setItem("user_id", data.user_id);
-            navigate("/tasks");
+            console.log(response);
+            if (response.ok) {
+                const data = await response.json();
+                localStorage.setItem("access_token", data.access);
+                localStorage.setItem("refresh", data.refresh);
+                localStorage.setItem("user_id", data.user_id);
+                navigate("/tasks");
+            } else if (response.status === 401) {
+                localStorage.removeItem("access_token");
+                console.error("Invalid credentials");
+            }
         } catch (error) {
             console.error("Error during login", error);
         }

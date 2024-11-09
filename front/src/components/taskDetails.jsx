@@ -11,7 +11,7 @@ import { useParams } from "react-router-dom";
 
 function TaskDetails() {
     const url = "http://localhost:8000/api/";
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("access_token");
     const [taskDetails, setTaskDetails] = useState([]);
     const [loading, setLoading] = useState(true);
     const { id } = useParams();

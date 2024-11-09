@@ -2,10 +2,12 @@ import { useNavigate } from "react-router-dom";
 
 function Header() {
     const navigate = useNavigate();
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("access_token");
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh");
+        localStorage.removeItem("user_id");
         navigate("/login");
     };
 
