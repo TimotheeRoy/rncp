@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { formatDate } from "../utils";
 
 // [{ id: 1,
 // title: "Task 1",
@@ -61,7 +62,8 @@ function TaskDetails() {
                         </strong>
                     </p>
                     <p>
-                        <strong>Due date:</strong> {taskDetails.due_date}
+                        <strong>Due date:</strong>{" "}
+                        {formatDate(taskDetails.due_date)}
                     </p>
                 </div>
             ) : (
