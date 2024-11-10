@@ -74,9 +74,6 @@ function TasksList() {
             });
 
             if (response.ok) {
-                const data = await response.json();
-                console.log("Task updated:", data);
-
                 setTasks((prevTasks) => {
                     const updatedCompletedTasks = prevTasks.completed.filter(
                         (task) => task.id !== id

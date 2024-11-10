@@ -22,7 +22,6 @@ function Login() {
                     password,
                 }),
             });
-            console.log(response);
             if (response.ok) {
                 const data = await response.json();
                 localStorage.setItem("access_token", data.access);
