@@ -5,18 +5,20 @@ import {
     useLocation,
 } from "react-router-dom";
 
-import Login from "./components/login";
-import TasksList from "./components/tasksList";
-import ProtectedRoute from "./components/protectedRoute";
-import NotFound from "./components/notFound";
-import UpdateProfile from "./components/updateProfile";
-import TaskDetails from "./components/taskDetails";
-import AddTask from "./components/addTask";
+import {
+    Login,
+    TasksList,
+    ProtectedRoute,
+    NotFound,
+    UpdateProfile,
+    TaskDetails,
+    AddTask,
+    Header,
+    Profile,
+    Signup,
+} from "./components";
 
 import "./App.css";
-import Header from "./components/header";
-import Profile from "./components/profile";
-import Signup from "./components/signUp";
 
 function App() {
     const location = useLocation();

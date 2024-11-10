@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function TasksList() {
+    const url = "http://localhost:8000/api/";
+    const token = localStorage.getItem("access_token");
+    
     const [tasks, setTasks] = useState({ completed: [], not_completed: [] });
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
-    const url = "http://localhost:8000/api/";
-    const token = localStorage.getItem("access_token");
 
     useEffect(() => {
         fetchTasks();

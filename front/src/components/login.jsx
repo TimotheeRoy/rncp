@@ -2,10 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
+    const url = "http://localhost:8000/api/";
+    
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const url = "http://localhost:8000/api/";
 
     const handleSubmit = async (e) => {
         e.preventDefault();

@@ -2,13 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function AddTask() {
+    const url = "http://localhost:8000/api/";
+    const token = localStorage.getItem("access_token");
+    const user_id = localStorage.getItem("user_id");
+    
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [dueDate, setDueDate] = useState("");
     const navigate = useNavigate();
-    const url = "http://localhost:8000/api/";
-    const token = localStorage.getItem("access_token");
-    const user_id = localStorage.getItem("user_id");
 
     const handleSubmit = async (e) => {
         e.preventDefault();

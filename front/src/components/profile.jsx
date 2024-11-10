@@ -11,9 +11,10 @@ import { useNavigate } from "react-router-dom";
 function Profile() {
     const url = "http://localhost:8000/api/";
     const token = localStorage.getItem("access_token");
+    const user_id = localStorage.getItem("user_id");
+    
     const [profile, setProfile] = useState([]);
     const [loading, setLoading] = useState(true);
-    const user_id = localStorage.getItem("user_id");
     const navigate = useNavigate();
 
     useEffect(() => {

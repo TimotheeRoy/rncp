@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { formatDate } from "../utils";
 
 // [{ id: 1,
@@ -13,9 +15,11 @@ import { formatDate } from "../utils";
 function TaskDetails() {
     const url = "http://localhost:8000/api/";
     const token = localStorage.getItem("access_token");
+
     const [taskDetails, setTaskDetails] = useState([]);
     const [loading, setLoading] = useState(true);
     const { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchTasksDetails(id);
@@ -42,6 +46,25 @@ function TaskDetails() {
         }
     };
 
+    const deleteTask = async (id) => {
+        try {
+            const response = await fetch(url + `tasks/${id}/`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+            });
+            if (response.ok) {
+                navigate("/tasks");
+            } else {
+                console.error("Error deleting task:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Error deleting task:", error);
+        }
+    };
+
     if (loading) {
         return <p>Loading...</p>;
     }
@@ -65,6 +88,9 @@ function TaskDetails() {
                         <strong>Due date:</strong>{" "}
                         {formatDate(taskDetails.due_date)}
                     </p>
+                    <button onClick={() => deleteTask(taskDetails.id)}>
+                        Delete Task
+                    </button>
                 </div>
             ) : (
                 <p>No details found</p>

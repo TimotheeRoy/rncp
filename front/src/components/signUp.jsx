@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
+    const url = "http://localhost:8000/api/";
+    
     const [formData, setFormData] = useState({
         email: "",
         first_name: "",
@@ -9,7 +11,6 @@ function Signup() {
         password: "",
     });
     const [error, setError] = useState(null);
-    const url = "http://localhost:8000/api/";
     const navigate = useNavigate();
 
     const handleChange = (e) => {

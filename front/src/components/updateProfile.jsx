@@ -2,12 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function UpdateProfile() {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const navigate = useNavigate();
     const token = localStorage.getItem("access_token");
     const user_id = localStorage.getItem("user_id");
     const url = "http://localhost:8000/api/";
+    
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const navigate = useNavigate();
 
 
     const handleUpdate = async () => {
