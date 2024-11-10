@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/protectedRoute";
 import NotFound from "./components/notFound";
 import UpdateProfile from "./components/updateProfile";
 import TaskDetails from "./components/taskDetails";
+import AddTask from "./components/addTask";
 
 import "./App.css";
 import Header from "./components/header";
@@ -32,6 +33,14 @@ function App() {
                     element={
                         <ProtectedRoute>
                             <TasksList />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/tasks/create"
+                    element={
+                        <ProtectedRoute>
+                            <AddTask />
                         </ProtectedRoute>
                     }
                 />

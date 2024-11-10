@@ -106,6 +106,7 @@ function TasksList() {
 
     return (
         <div>
+            <button onClick={() => navigate("/tasks/create")}>Add Task</button>
             <h1>Todo</h1>
             <ul>
                 {tasks.not_completed ? (
