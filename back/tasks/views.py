@@ -33,7 +33,6 @@ class TaskDetailView(APIView):
 
     def put(self, request, pk):
         task = Task.objects.get(pk=pk)
-        print(request.data)
         serializer = TaskSerializer(task, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
