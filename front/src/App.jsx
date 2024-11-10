@@ -1,8 +1,6 @@
 import {
-    BrowserRouter as Router,
     Routes,
     Route,
-    useLocation,
 } from "react-router-dom";
 
 import {
@@ -16,24 +14,24 @@ import {
     Header,
     Profile,
     Signup,
+    TaskUpdate,
 } from "./components";
 
 import "./App.css";
 
 function App() {
-    const location = useLocation();
-    const showHeader = location.pathname !== "/login";
 
     return (
         <div>
-            {showHeader && <Header />}
             <Routes>
+                <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
                 {/* Protected routes */}
                 <Route
                     path="/tasks"
                     element={
                         <ProtectedRoute>
+                            <Header />
                             <TasksList />
                         </ProtectedRoute>
                     }
@@ -42,6 +40,7 @@ function App() {
                     path="/tasks/create"
                     element={
                         <ProtectedRoute>
+                            <Header />
                             <AddTask />
                         </ProtectedRoute>
                     }
@@ -50,7 +49,17 @@ function App() {
                     path="/tasks/:id"
                     element={
                         <ProtectedRoute>
+                            <Header />
                             <TaskDetails />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/tasks/:id/update"
+                    element={
+                        <ProtectedRoute>
+                            <Header />
+                            <TaskUpdate />
                         </ProtectedRoute>
                     }
                 />
@@ -58,6 +67,7 @@ function App() {
                     path="/profile"
                     element={
                         <ProtectedRoute>
+                            <Header />
                             <Profile />
                         </ProtectedRoute>
                     }
@@ -66,11 +76,11 @@ function App() {
                     path="/profile/update"
                     element={
                         <ProtectedRoute>
+                            <Header />
                             <UpdateProfile />
                         </ProtectedRoute>
                     }
                 />
-                <Route path="/signup" element={<Signup />} />
                 <Route
                     path="*"
                     element={

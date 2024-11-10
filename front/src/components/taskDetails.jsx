@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { formatDate } from "../utils";
 
@@ -90,6 +89,15 @@ function TaskDetails() {
                     </p>
                     <button onClick={() => deleteTask(taskDetails.id)}>
                         Delete Task
+                    </button>
+                    <button
+                        onClick={() =>
+                            navigate(`/tasks/${id}/update`, {
+                                state: taskDetails,
+                            })
+                        }
+                    >
+                        Update Task
                     </button>
                 </div>
             ) : (

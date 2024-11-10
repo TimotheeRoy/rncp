@@ -26,7 +26,6 @@ function UpdateProfile() {
             });
             if (response.ok) {
                 const data = await response.json();
-                console.log("Profile updated:", data);
                 navigate("/profile");
             } else {
                 console.error("Error updating profile");
