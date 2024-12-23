@@ -12,7 +12,7 @@ function Profile() {
     const url = "http://localhost:8000/api/";
     const token = localStorage.getItem("access_token");
     const user_id = localStorage.getItem("user_id");
-    
+
     const [profile, setProfile] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
@@ -76,7 +76,11 @@ function Profile() {
                     </p>
                     <p>Email: {profile.email}</p>
                     <button onClick={deleteProfile}>Delete Profile</button>
-                    <button onClick={() => navigate("/profile/update")}>
+                    <button
+                        onClick={() =>
+                            navigate("/profile/update", { state: profile })
+                        }
+                    >
                         Update Profile
                     </button>
                 </div>

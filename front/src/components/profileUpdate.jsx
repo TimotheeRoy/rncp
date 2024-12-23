@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function UpdateProfile() {
     const token = localStorage.getItem("access_token");
     const user_id = localStorage.getItem("user_id");
     const url = "http://localhost:8000/api/";
-    
+
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const navigate = useNavigate();
-
+    const location = useLocation();
+    const profile = location.state;
 
     const handleUpdate = async () => {
         try {
@@ -40,13 +41,13 @@ function UpdateProfile() {
             <input
                 type="text"
                 placeholder="First Name"
-                value={firstName}
+                value={firstName || profile.first_name}
                 onChange={(e) => setFirstName(e.target.value)}
             />
             <input
                 type="text"
                 placeholder="Last Name"
-                value={lastName}
+                value={lastName || profile.last_name}
                 onChange={(e) => setLastName(e.target.value)}
             />
             <button onClick={handleUpdate}>Update Profile</button>
