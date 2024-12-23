@@ -4,23 +4,31 @@ import { useNavigate } from "react-router-dom";
 function TasksList() {
     const url = "http://localhost:8000/api/";
     const token = localStorage.getItem("access_token");
-    
+
     const [tasks, setTasks] = useState({ completed: [], not_completed: [] });
     const [loading, setLoading] = useState(true);
+    const [query, setQuery] = useState("");
+
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetchTasks();
-    }, []);
+        const delayDebounceFn = setTimeout(() => {
+            fetchTasks(query);
+        }, 300);
+        return () => clearTimeout(delayDebounceFn);
+    }, [query]);
 
-    const fetchTasks = async () => {
+    const fetchTasks = async (search) => {
         try {
-            const response = await fetch(url + "tasks/", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                },
-            });
+            const response = await fetch(
+                url + "tasks/" + (search !== "" ? `?search=${search}` : ""),
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
             if (response.ok) {
                 const data = await response.json();
                 setTasks({
@@ -104,6 +112,16 @@ function TasksList() {
 
     return (
         <div>
+            <div className="search-toolbar">
+                <input
+                    alt="Search toolbar"
+                    type="text"
+                    className="search-input"
+                    placeholder="Search..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                />
+            </div>
             <button onClick={() => navigate("/tasks/create")}>Add Task</button>
             <h1>Todo</h1>
             <ul>
