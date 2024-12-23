@@ -1,4 +1,5 @@
-from rest_framework import generics
+
+from rest_framework import generics, filters
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -7,16 +8,31 @@ from tasks.serializers import TaskAddSerializer, TaskSerializer
 from .models import Task
 
 
+class TaskNameSearchFilter(filters.BaseFilterBackend):
+    def filter_queryset(self, request, queryset, view):
+        print("searching")
+        search = request.query_params.get("search", None)
+        if search:
+            return queryset.filter(title__icontains=search).distinct()
+        return queryset
+
 class TasksListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
+    filter_backends = [TaskNameSearchFilter]
+    serializer_class = TaskSerializer
 
-    def get(self, request, *args, **kwargs):
-        user = request.user
-        completed_tasks = user.tasks.filter(completed=True)
-        not_completed_tasks = user.tasks.filter(completed=False)
-        completed_tasks_data = TaskSerializer(completed_tasks, many=True)
-        not_completed_tasks_data = TaskSerializer(not_completed_tasks, many=True)
-        return Response({"completed": completed_tasks_data.data, "not_completed": not_completed_tasks_data.data})
+    def get_queryset(self):
+        user = self.request.user
+        return user.tasks.order_by("due_date")
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        completed = queryset.filter(completed=True)
+        not_completed = queryset.filter(completed=False)
+        completed_data = self.get_serializer(completed, many=True).data
+        not_completed_data = self.get_serializer(not_completed, many=True).data
+        return Response({"completed" : completed_data, "not_completed": not_completed_data})
+
     
     def post(self, request):
         serializer = TaskAddSerializer(data=request.data)
