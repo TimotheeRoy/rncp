@@ -9,3 +9,4 @@ export { default as Header } from "./header";
 export { default as Profile } from "./profile";
 export { default as Signup } from "./signUp";
 export { default as TaskUpdate } from "./taskUpdate";
+export { default as ForgotPw } from "./forgotPw";

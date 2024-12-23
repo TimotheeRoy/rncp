@@ -1,7 +1,4 @@
-import {
-    Routes,
-    Route,
-} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import {
     Login,
@@ -15,17 +12,18 @@ import {
     Profile,
     Signup,
     TaskUpdate,
+    ForgotPw,
 } from "./components";
 
 import "./App.css";
 
 function App() {
-
     return (
         <div>
             <Routes>
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/forgot-password" element={<ForgotPw />} />
                 {/* Protected routes */}
                 <Route
                     path="/tasks"
