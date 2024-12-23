@@ -6,7 +6,9 @@ function TaskUpdate() {
     const task = location.state;
     const [title, setTitle] = useState(task.title);
     const [description, setDescription] = useState(task.description);
-    const [dueDate, setDueDate] = useState(task.due_date.split("T")[0]);
+    const [dueDate, setDueDate] = useState(
+        task.due_date ? task.due_date.split("T")[0] : ""
+    );
     const navigate = useNavigate();
     const { id } = useParams();
 
