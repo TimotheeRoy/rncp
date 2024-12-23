@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function Signup() {
     const url = "http://localhost:8000/api/";
-    
+
     const [formData, setFormData] = useState({
         email: "",
         first_name: "",
@@ -47,50 +47,52 @@ function Signup() {
 
     return (
         <div>
-            <h1>Sign Up</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Email:
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-                <label>
-                    First Name:
-                    <input
-                        type="text"
-                        name="first_name"
-                        value={formData.first_name}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-                <label>
-                    Last Name:
-                    <input
-                        type="text"
-                        name="last_name"
-                        value={formData.last_name}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-                <label>
-                    Password:
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
+            <form onSubmit={handleSubmit} className="signup-form">
+                <input
+                    type="text"
+                    name="first_name"
+                    value={formData.first_name}
+                    onChange={handleChange}
+                    required
+                    alt="First Name"
+                    placeholder="First Name"
+                    className="input-field"
+                />
+                <input
+                    type="text"
+                    name="last_name"
+                    value={formData.last_name}
+                    onChange={handleChange}
+                    required
+                    alt="Last Name"
+                    placeholder="Last Name"
+                    className="input-field"
+                />
+                <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    alt="Email"
+                    placeholder="Email"
+                    className="input-field"
+                />
+                <input
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                    alt="Password"
+                    placeholder="Password"
+                    className="input-field"
+                />
+
                 {error && <p style={{ color: "red" }}>{error}</p>}
-                <button type="submit">Sign Up</button>
+                <button type="submit" className="form-button">
+                    SIGN UP
+                </button>
             </form>
         </div>
     );

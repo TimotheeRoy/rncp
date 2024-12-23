@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../App.css";
 
 function Login() {
     const url = "http://localhost:8000/api/";
-    
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -38,28 +39,37 @@ function Login() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Email:
-                <input
-                    type="text"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-            </label>
-            <label>
-                Password:
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-            </label>
-            <button type="submit">Login</button>
-            <label>
-                Don't have an account ?
-                <button onClick={() => navigate("/signup")}>Sign Up</button>
-            </label>
+        <form onSubmit={handleSubmit} className="login-form">
+            <input
+                alt="Email"
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                className="input-field"
+            />
+            <input
+                alt="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                className="input-field"
+            />
+            <div>
+                <button type="submit" className="form-button">
+                    Login
+                </button>
+                <p
+                    className="forgot-pw"
+                    onClick={() => navigate("/forgot-password")}
+                >
+                    Forgot your password ?
+                </p>
+            </div>
+            <button className="form-button" onClick={() => navigate("/signup")}>
+                Sign Up
+            </button>
         </form>
     );
 }
