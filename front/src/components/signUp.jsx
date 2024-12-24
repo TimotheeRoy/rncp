@@ -46,55 +46,53 @@ function Signup() {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit} className="signup-form">
-                <input
-                    type="text"
-                    name="first_name"
-                    value={formData.first_name}
-                    onChange={handleChange}
-                    required
-                    alt="First Name"
-                    placeholder="First Name"
-                    className="input-field"
-                />
-                <input
-                    type="text"
-                    name="last_name"
-                    value={formData.last_name}
-                    onChange={handleChange}
-                    required
-                    alt="Last Name"
-                    placeholder="Last Name"
-                    className="input-field"
-                />
-                <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    alt="Email"
-                    placeholder="Email"
-                    className="input-field"
-                />
-                <input
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                    alt="Password"
-                    placeholder="Password"
-                    className="input-field"
-                />
+        <form onSubmit={handleSubmit} className="signup-form">
+            <input
+                type="text"
+                name="first_name"
+                value={formData.first_name}
+                onChange={handleChange}
+                required
+                alt="First Name"
+                placeholder="First Name"
+                className="input-field"
+            />
+            <input
+                type="text"
+                name="last_name"
+                value={formData.last_name}
+                onChange={handleChange}
+                required
+                alt="Last Name"
+                placeholder="Last Name"
+                className="input-field"
+            />
+            <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                alt="Email"
+                placeholder="Email"
+                className="input-field"
+            />
+            <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                alt="Password"
+                placeholder="Password"
+                className="input-field"
+            />
 
-                {error && <p style={{ color: "red" }}>{error}</p>}
-                <button type="submit" className="form-button">
-                    SIGN UP
-                </button>
-            </form>
-        </div>
+            {error && <p style={{ color: "red" }}>{error}</p>}
+            <button type="submit" className="form-button">
+                SIGN UP
+            </button>
+        </form>
     );
 }
 

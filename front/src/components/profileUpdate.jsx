@@ -6,11 +6,12 @@ function UpdateProfile() {
     const user_id = localStorage.getItem("user_id");
     const url = "http://localhost:8000/api/";
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
     const profile = location.state;
+
+    const [firstName, setFirstName] = useState(profile.first_name || "");
+    const [lastName, setLastName] = useState(profile.last_name || "");
 
     const handleUpdate = async () => {
         try {
@@ -37,20 +38,27 @@ function UpdateProfile() {
     };
 
     return (
-        <div>
+        <div className="profile">
+            <h1>Profile</h1>
             <input
                 type="text"
                 placeholder="First Name"
-                value={firstName || profile.first_name}
+                value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
+                alt="First name"
+                className="input-field"
             />
             <input
                 type="text"
                 placeholder="Last Name"
-                value={lastName || profile.last_name}
+                value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
+                alt="Last name"
+                className="input-field"
             />
-            <button onClick={handleUpdate}>Update Profile</button>
+            <button className="form-button" onClick={handleUpdate}>
+                Update
+            </button>
         </div>
     );
 }
