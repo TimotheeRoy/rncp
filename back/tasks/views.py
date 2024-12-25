@@ -10,7 +10,6 @@ from .models import Task
 
 class TaskNameSearchFilter(filters.BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
-        print("searching")
         search = request.query_params.get("search", None)
         if search:
             return queryset.filter(title__icontains=search).distinct()
