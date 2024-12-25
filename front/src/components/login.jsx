@@ -41,7 +41,7 @@ function Login() {
     return (
         <form onSubmit={handleSubmit} className="login-form">
             <input
-                alt="Email"
+                aria-label="Email"
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -49,7 +49,7 @@ function Login() {
                 className="input-field"
             />
             <input
-                alt="password"
+                aria-label="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

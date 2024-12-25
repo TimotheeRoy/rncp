@@ -20,7 +20,7 @@ function ForgotPw() {
                 onChange={(e) => setEmail(e.target.value)}
                 className="input-field"
                 placeholder="Email"
-                alt="Email"
+                aria-label="Email"
             />
             <button className="form-button" type="submit">
                 Send

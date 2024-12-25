@@ -41,28 +41,34 @@ function TaskUpdate() {
     };
 
     return (
-        <div>
+        <form className="profile" onSubmit={handleUpdate}>
             <h1>Update Task</h1>
-            <form onSubmit={handleUpdate}>
-                <input
-                    type="text"
-                    placeholder={task.title}
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-                <textarea
-                    placeholder={task.description}
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
-                <input
-                    type="date"
-                    value={dueDate}
-                    onChange={(e) => setDueDate(e.target.value)}
-                />
-                <button type="submit">Update Task</button>
-            </form>
-        </div>
+            <input
+                type="text"
+                placeholder={task.title}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                aria-label="title"
+                className="input-field"
+            />
+            <textarea
+                placeholder={task.description}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                aria-label="description"
+                className="input-field"
+            />
+            <input
+                type="date"
+                value={dueDate}
+                onChange={(e) => setDueDate(e.target.value)}
+                aria-label="due_date"
+                className="input-field"
+            />
+            <button className="form-button" type="submit">
+                Update
+            </button>
+        </form>
     );
 }
 

@@ -65,33 +65,27 @@ function Profile() {
     };
 
     return (
-        <div>
-            {loading ? (
-                <p>Loading profile...</p>
-            ) : (
-                <div className="profile">
-                    <h1>Profile</h1>
-                    <p>
-                        <b>Name</b> : {profile.first_name} {profile.last_name}
-                    </p>
-                    <p>
-                        <b>Email</b> : {profile.email}
-                    </p>
-                    <div className="profile-btn">
-                        <button className="perso-btn" onClick={deleteProfile}>
-                            Delete
-                        </button>
-                        <button
-                            className="perso-btn"
-                            onClick={() =>
-                                navigate("/profile/update", { state: profile })
-                            }
-                        >
-                            Edit
-                        </button>
-                    </div>
-                </div>
-            )}
+        <div className="profile">
+            <h1>Profile</h1>
+            <p>
+                <b>Name</b> : {profile.first_name} {profile.last_name}
+            </p>
+            <p>
+                <b>Email</b> : {profile.email}
+            </p>
+            <div className="profile-btn">
+                <button className="perso-btn" onClick={deleteProfile}>
+                    Delete
+                </button>
+                <button
+                    className="perso-btn"
+                    onClick={() =>
+                        navigate("/profile/update", { state: profile })
+                    }
+                >
+                    Edit
+                </button>
+            </div>
         </div>
     );
 }

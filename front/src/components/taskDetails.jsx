@@ -68,41 +68,34 @@ function TaskDetails() {
         return <p>Loading...</p>;
     }
     return (
-        <div>
-            <h1>Task Details</h1>
-            {taskDetails ? (
-                <div>
-                    <p>
-                        <strong>Title:</strong> {taskDetails.title}
-                    </p>
-                    <p>
-                        <strong>Description:</strong> {taskDetails.description}
-                    </p>
-                    <p>
-                        <strong>
-                            {taskDetails.completed ? "Done" : "To do"}
-                        </strong>
-                    </p>
-                    <p>
-                        <strong>Due date:</strong>{" "}
-                        {formatDate(taskDetails.due_date)}
-                    </p>
-                    <button onClick={() => deleteTask(taskDetails.id)}>
-                        Delete Task
-                    </button>
-                    <button
-                        onClick={() =>
-                            navigate(`/tasks/${id}/update`, {
-                                state: taskDetails,
-                            })
-                        }
-                    >
-                        Update Task
-                    </button>
-                </div>
-            ) : (
-                <p>No details found</p>
-            )}
+        <div className="profile">
+            <h1>
+                {taskDetails.title} - {taskDetails.completed ? "Done" : "To do"}
+            </h1>
+            <p>
+                <strong>Description</strong> : {taskDetails.description}
+            </p>
+            <p>
+                <strong>Due date</strong> : {formatDate(taskDetails.due_date)}
+            </p>
+            <div className="profile-btn">
+                <button
+                    className="perso-btn"
+                    onClick={() => deleteTask(taskDetails.id)}
+                >
+                    Delete
+                </button>
+                <button
+                    className="perso-btn"
+                    onClick={() =>
+                        navigate(`/tasks/${id}/update`, {
+                            state: taskDetails,
+                        })
+                    }
+                >
+                    Edit
+                </button>
+            </div>
         </div>
     );
 }

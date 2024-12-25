@@ -45,7 +45,7 @@ function UpdateProfile() {
                 placeholder="First Name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                alt="First name"
+                aria-label="First name"
                 className="input-field"
             />
             <input
@@ -53,7 +53,7 @@ function UpdateProfile() {
                 placeholder="Last Name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                alt="Last name"
+                aria-label="Last name"
                 className="input-field"
             />
             <button className="form-button" onClick={handleUpdate}>

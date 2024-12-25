@@ -53,7 +53,7 @@ function Signup() {
                 value={formData.first_name}
                 onChange={handleChange}
                 required
-                alt="First Name"
+                aria-label="First Name"
                 placeholder="First Name"
                 className="input-field"
             />
@@ -63,7 +63,7 @@ function Signup() {
                 value={formData.last_name}
                 onChange={handleChange}
                 required
-                alt="Last Name"
+                aria-label="Last Name"
                 placeholder="Last Name"
                 className="input-field"
             />
@@ -73,7 +73,7 @@ function Signup() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                alt="Email"
+                aria-label="Email"
                 placeholder="Email"
                 className="input-field"
             />
@@ -83,7 +83,7 @@ function Signup() {
                 value={formData.password}
                 onChange={handleChange}
                 required
-                alt="Password"
+                aria-label="Password"
                 placeholder="Password"
                 className="input-field"
             />

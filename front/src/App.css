@@ -144,4 +144,28 @@ nav > button {
     flex-direction: column;
     justify-content: center;
     gap: 1.5rem;
+    max-width: 50%;
+}
+
+.search-input {
+    background-color: transparent;
+    border: 1px solid white;
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    margin: 1rem;
+}
+
+li {
+    list-style: none;
+}
+
+.task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-svg {
+    margin-left: 1rem;
+    cursor: pointer;
 }
