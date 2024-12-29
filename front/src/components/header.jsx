@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
@@ -33,7 +34,9 @@ function Header() {
                         Tasks
                     </button>
                 </div>
-                <button className="perso-btn" onClick={handleLogout}>Logout</button>
+                <button className="perso-btn" onClick={handleLogout}>
+                    Logout
+                </button>
             </nav>
         </header>
     );
