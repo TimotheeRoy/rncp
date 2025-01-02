@@ -1,8 +1,7 @@
 from django.urls import reverse
 from rest_framework.test import APITestCase
 
-from users.models import User
-from users.test.factories import make_user, login_user
+from users.test.factories import login_user, make_user
 
 
 class LoginViewTest(APITestCase):
@@ -45,7 +44,7 @@ class CreateUserViewTest(APITestCase):
         }
         response = self.client.post(self.path, data)
         self.assertEqual(response.status_code, 201)
-    
+
 
 class RetrieveUserViewTest(APITestCase):
     @classmethod
@@ -72,7 +71,7 @@ class UpdateUserViewTest(APITestCase):
     @property
     def path(self):
         return reverse("user-update", args=[self.user.id])
-    
+
     def test_can_put(self):
         data = {
             "first_name": "test",
@@ -81,6 +80,7 @@ class UpdateUserViewTest(APITestCase):
         header = login_user(self.user)
         response = self.client.put(self.path, data, **header)
         self.assertEqual(response.status_code, 200)
+
 
 class DeleteUserViewTest(APITestCase):
     @classmethod
@@ -91,7 +91,7 @@ class DeleteUserViewTest(APITestCase):
     @property
     def path(self):
         return reverse("user-delete", args=[self.user.id])
-    
+
     def test_can_delete(self):
         header = login_user(self.user)
         response = self.client.delete(self.path, **header)

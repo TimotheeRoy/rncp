@@ -1,8 +1,9 @@
 import random
-from faker import Faker
-from users.models import User
-from tasks.models import Task
 
+from faker import Faker
+
+from tasks.models import Task
+from users.models import User
 
 fake = Faker()
 

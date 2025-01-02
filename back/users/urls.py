@@ -2,9 +2,6 @@ from django.urls import path
 
 from users.views import CreateUserView, DeleteUserView, RetrieveUserView, UpdateUserView
 
-
-
-
 urlpatterns = [
     path(
         "<int:pk>/",
@@ -27,4 +24,3 @@ urlpatterns = [
         name="user-create",
     ),
 ]
-

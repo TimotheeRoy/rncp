@@ -7,5 +7,3 @@ class UsersTests(TestCase):
 
     def test_can_connect_user(self):
         pass
-
-    
