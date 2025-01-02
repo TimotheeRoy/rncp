@@ -1,5 +1,5 @@
 pip-tools
-Django
+Django>=5.1.4
 djangorestframework
 djangorestframework_simplejwt
 drf_spectacular
